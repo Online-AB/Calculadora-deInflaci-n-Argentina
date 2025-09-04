@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Mobile Responsiveness -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Referrer Policy -->
+    <meta name="referrer" content="always">
+    <!-- SEO Meta Description -->
+    <meta name="description" content="Calculadora de inflación Uruguay - Herramienta para calcular el impacto de la inflación en pesos uruguayos. Obtén resultados precisos del IPC uruguayo.">
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="calculadora inflación Uruguay, IPC Uruguay, inflación pesos uruguayos, calculadora económica Uruguay">
+    <!-- Page Title -->
+    <title>Calculadora de Inflaci&oacute;n Uruguay - IPC Uruguayo</title>
+    <!-- Canonical Tag -->
+    <link href="" rel="canonical" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .dropdown-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .dropdown-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+
+        .dropdown {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover {
+            border-color: #667eea;
+        }
+
+        .dropdown:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .calculator-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .calculator-title {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .result {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+        }
+
+        .article-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .article-title {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .calculator-section,
+            .dropdown-container,
+            .article-section {
+                padding: 25px;
+            }
+
+            .calculator-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Calculadora de Inflación Uruguay</h1>
+            <p>Herramienta profesional para calcular el IPC uruguayo</p>
+        </div>
+
+        <div class="dropdown-container">
+            <label class="dropdown-label">Selecciona el país para calcular la inflación:</label>
+            <select class="dropdown" id="countryDropdown" onchange="navigateToCountry()">
+                <option value="index.html">Calculadora de Inflación Argentina</option>
+                <option value="calculadora-ipc-chile.html">Calculadora de la inflación de Chile</option>
+                <option value="colombia.html">Calculadora de Inflación de Colombia</option>
+                <option value="mexico.html">Calculadora de Inflación México</option>
+                <option value="paraguay.html">Calculadora de la inflación Paraguay</option>
+                <option value="peru.html">Calculadora de inflación de Perú</option>
+                <option value="uruguay.html" selected>Calculadora de inflación de Uruguay</option>
+                <option value="united-state.html">US Inflation Calculator</option>
+            </select>
+        </div>
+
+        <div class="calculator-section">
+            <h2 class="calculator-title">Calculadora de Inflación Uruguay</h2>
+            
+            <div class="form-group">
+                <label class="form-label">Monto inicial (UYU):</label>
+                <input type="number" class="form-input" id="initialAmount" placeholder="Ingresa el monto inicial en pesos uruguayos">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Tasa de inflación anual (%):</label>
+                <input type="number" class="form-input" id="inflationRate" placeholder="Ingresa la tasa de inflación" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Número de años:</label>
+                <input type="number" class="form-input" id="years" placeholder="Ingresa el número de años">
+            </div>
+
+            <button class="calculate-btn" onclick="calculateInflation()">Calcular Inflación</button>
+
+            <div class="result" id="result">
+                <h3>Resultado del Cálculo:</h3>
+                <p id="resultText"></p>
+            </div>
+
+            <a href="https://calculadorade-inflacion.com/uruguay.html" class="cta-button">Calculadora de Inflación Uruguay</a>
+        </div>
+
+        <div class="article-section">
+            <h2 class="article-title">Entendiendo la Inflación en Uruguay</h2>
+            <div class="article-content">
+                <p>Uruguay ha mantenido una estabilidad macroeconómica notable en las últimas décadas, con el Banco Central del Uruguay (BCU) implementando políticas monetarias efectivas para controlar la inflación. El país ha logrado mantener tasas de inflación dentro de rangos manejables, contribuyendo a la estabilidad económica regional.</p>
+                
+                <p>El Índice de Precios al Consumidor (IPC) en Uruguay es calculado por el Instituto Nacional de Estadística (INE) y refleja la variación de precios de una canasta de bienes y servicios representativa del consumo de los hogares uruguayos. El peso uruguayo es la moneda oficial del país.</p>
+                
+                <p>La economía uruguaya se caracteriza por su diversificación, con sectores importantes como la ganadería, la agricultura, los servicios financieros y el turismo. Esta diversificación económica ha contribuido a la estabilidad de precios y al crecimiento sostenido del país.</p>
+                
+                <p>Para los uruguayos, comprender el impacto de la inflación es fundamental para la planificación financiera personal. Uruguay cuenta con un sistema financiero desarrollado y regulado que ofrece diversas opciones de inversión para proteger el patrimonio contra los efectos de la inflación.</p>
+                
+                <p>Nuestra calculadora te permite estimar cómo la inflación afectará tus ahorros en pesos uruguayos, facilitando la toma de decisiones informadas sobre inversiones, ahorros y planificación financiera a largo plazo en el contexto económico uruguayo.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contacto</a>
+                <a href="about.html">Acerca de</a>
+                <a href="privacy.html">Política de Privacidad</a>
+            </div>
+            <p>&copy; 2024 Calculadora de Inflación. Todos los derechos reservados.</p>
+        </div>
+    </div>
+
+    <script>
+        function navigateToCountry() {
+            const dropdown = document.getElementById('countryDropdown');
+            const selectedValue = dropdown.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        }
+
+        function calculateInflation() {
+            const initialAmount = parseFloat(document.getElementById('initialAmount').value);
+            const inflationRate = parseFloat(document.getElementById('inflationRate').value);
+            const years = parseInt(document.getElementById('years').value);
+
+            if (isNaN(initialAmount) || isNaN(inflationRate) || isNaN(years)) {
+                alert('Por favor, ingresa valores válidos en todos los campos.');
+                return;
+            }
+
+            if (initialAmount <= 0 || inflationRate < 0 || years <= 0) {
+                alert('Por favor, ingresa valores positivos.');
+                return;
+            }
+
+            // Calculate future value considering inflation
+            const futureValue = initialAmount * Math.pow(1 + (inflationRate / 100), years);
+            const inflationImpact = futureValue - initialAmount;
+            const purchasingPowerLoss = initialAmount - (initialAmount / Math.pow(1 + (inflationRate / 100), years));
+
+            const resultDiv = document.getElementById('result');
+            const resultText = document.getElementById('resultText');
+
+            resultText.innerHTML = `
+                <strong>Monto inicial:</strong> $${initialAmount.toLocaleString('es-UY', {minimumFractionDigits: 2})} UYU<br>
+                <strong>Valor futuro (con inflación):</strong> $${futureValue.toLocaleString('es-UY', {minimumFractionDigits: 2})} UYU<br>
+                <strong>Impacto total de la inflación:</strong> $${inflationImpact.toLocaleString('es-UY', {minimumFractionDigits: 2})} UYU<br>
+                <strong>Pérdida de poder adquisitivo:</strong> $${purchasingPowerLoss.toLocaleString('es-UY', {minimumFractionDigits: 2})} UYU<br>
+                <strong>Poder adquisitivo equivalente:</strong> $${(initialAmount / Math.pow(1 + (inflationRate / 100), years)).toLocaleString('es-UY', {minimumFractionDigits: 2})} UYU
+            `;
+
+            resultDiv.classList.add('show');
+        }
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
